@@ -11,17 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
 
     /**
@@ -48,17 +37,16 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
-        if(auth()->attempt(array('email' =>$input['email'], 'password' =>$input['password'])))
+        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
-            if(auth()->user()->roles_id == 1) {
+            if(auth()->user()->roles_id == 1){
                 return redirect()->route('admin.home');
             }else{
                 return redirect()->route('home');
             }
         }else{
             return redirect()->route('login')
-            ->with('email','Email-Address And Password Are Wrong.');
+            ->with('email', 'Email-Address And Password Are Wrong.');
         }
     }
 }

@@ -23,10 +23,9 @@ class CreateRolesSeeder extends Seeder
                 'id' => 2,
                 'name' => 'User',
             ]
-            ];
-
-            foreach ($roles as $key => $role) {
-                Role::create($role);
-            }
+        ];
+        foreach($roles as $key => $role){
+            Role::create($role);
+        }
     }
 }
